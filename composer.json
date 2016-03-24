@@ -1,0 +1,24 @@
+{
+	"name": "armenio/armenio-image",
+	"description": "Image library",
+	"type": "library",
+	"keywords": [
+		"image",
+		"helper",
+		"zf2",
+		"armenio"
+	],
+	"homepage": "https://github.com/armenio/armenio-image",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Rafael Armênio",
+			"email": "rafael.armenio@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Aircode\\Image\\": "src/"
+		}
+	},
+}
