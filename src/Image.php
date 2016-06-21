@@ -51,7 +51,7 @@ class Image
 	public $y_axis				= 0;
 	public $dst_x_axis			= 0;
 	public $dst_y_axis			= 0;
-	public $bg_color			= array(255, 255, 255);
+	public $bg_color			= [255, 255, 255];
 
 	// Watermark Vars
 	public $wm_text				= '';			// Watermark text if graphic is not used
@@ -83,7 +83,7 @@ class Image
 	public $full_dst_path		= '';
 	public $create_fnc			= 'imagecreatetruecolor';
 	public $copy_fnc			= 'imagecopyresampled';
-	public $error_msg			= array();
+	public $error_msg			= [];
 	public $wm_use_drop_shadow	= false;
 	public $wm_use_truetype		= false;
 
@@ -93,7 +93,7 @@ class Image
 	 * @param	string
 	 * @return	void
 	 */
-	public function __construct($props = array()) {
+	public function __construct($props = []) {
 		if (count($props) > 0) {
 			$this->initialize($props);
 		}
@@ -110,7 +110,7 @@ class Image
 	 * @param	array
 	 * @return	bool
 	 */
-	public function initialize($props = array()) {
+	public function initialize($props = []) {
 		/*
 		 * Convert array elements into class variables
 		 */
@@ -369,7 +369,7 @@ class Image
 	 */
 	public function rotate() {
 		// Allowed rotation values
-		$degs = array(90, 180, 270, 'vrt', 'hor');
+		$degs = [90, 180, 270, 'vrt', 'hor'];
 
 		if ($this->rotation_angle == '' || ! in_array($this->rotation_angle, $degs)) {
 			$this->set_error('imglib_rotation_angle_required');
@@ -1025,7 +1025,7 @@ class Image
 		switch ($image_type) {
 			case	 1 :
 						if ( ! function_exists('imagecreatefromgif')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_gif_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_gif_not_supported']);
 							return false;
 						}
 
@@ -1033,7 +1033,7 @@ class Image
 				break;
 			case 2 :
 						if ( ! function_exists('imagecreatefromjpeg')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_jpg_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_jpg_not_supported']);
 							return false;
 						}
 
@@ -1041,7 +1041,7 @@ class Image
 				break;
 			case 3 :
 						if ( ! function_exists('imagecreatefrompng')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_png_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_png_not_supported']);
 							return false;
 						}
 
@@ -1050,7 +1050,7 @@ class Image
 
 		}
 
-		$this->set_error(array('imglib_unsupported_imagecreate'));
+		$this->set_error(['imglib_unsupported_imagecreate']);
 		return false;
 	}
 
@@ -1070,7 +1070,7 @@ class Image
 		switch ($this->image_type) {
 			case 1 :
 						if ( ! function_exists('imagegif')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_gif_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_gif_not_supported']);
 							return false;
 						}
 
@@ -1081,7 +1081,7 @@ class Image
 				break;
 			case 2	:
 						if ( ! function_exists('imagejpeg')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_jpg_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_jpg_not_supported']);
 							return false;
 						}
 
@@ -1092,7 +1092,7 @@ class Image
 				break;
 			case 3	:
 						if ( ! function_exists('imagepng')) {
-							$this->set_error(array('imglib_unsupported_imagecreate', 'imglib_png_not_supported'));
+							$this->set_error(['imglib_unsupported_imagecreate', 'imglib_png_not_supported']);
 							return false;
 						}
 
@@ -1102,7 +1102,7 @@ class Image
 						}
 				break;
 			default		:
-							$this->set_error(array('imglib_unsupported_imagecreate'));
+							$this->set_error(['imglib_unsupported_imagecreate']);
 							return false;
 				break;
 		}
@@ -1222,7 +1222,7 @@ class Image
 
 		$vals = @getimagesize($path);
 
-		$types = array(1 => 'gif', 2 => 'jpeg', 3 => 'png');
+		$types = [1 => 'gif', 2 => 'jpeg', 3 => 'png'];
 
 		$mime = (isset($types[$vals['2']])) ? 'image/'.$types[$vals['2']] : 'image/jpg';
 
@@ -1270,7 +1270,7 @@ class Image
 			return;
 		}
 
-		$allowed = array('new_width', 'new_height', 'width', 'height');
+		$allowed = ['new_width', 'new_height', 'width', 'height'];
 
 		foreach ($allowed as $item) {
 			if ( ! isset($vals[$item]) || $vals[$item] == '')
@@ -1310,7 +1310,7 @@ class Image
 		$ext = strrchr($source_image, '.');
 		$name = ($ext === false) ? $source_image : substr($source_image, 0, -strlen($ext));
 
-		return array('ext' => $ext, 'name' => $name);
+		return ['ext' => $ext, 'name' => $name];
 	}
 
 	// --------------------------------------------------------------------
